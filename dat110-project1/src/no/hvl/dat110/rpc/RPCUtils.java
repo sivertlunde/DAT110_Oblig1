@@ -1,44 +1,60 @@
 package no.hvl.dat110.rpc;
 
-import java.util.Arrays;
+import java.nio.ByteBuffer;
 
 public class RPCUtils {
 
 	public static byte[] marshallString(byte rpcid, String str) {
 
-		byte[] encoded;
+		byte[] encoded = new byte[str.length()+1];
+		System.out.println(str.length());
+		
+		encoded[0] = rpcid;
+		
+		byte[] stringToByte = str.getBytes();
+		for (int i = 0; i < stringToByte.length; i++) {
+			encoded[i+1] = stringToByte[i];
+		}
 
 		// TODO: marshall RPC identifier and string into byte array
 
-		if (true) {
-			throw new RuntimeException("not yet implemented");
-		}
+//		if (true) {
+//			throw new RuntimeException("not yet implemented");
+//		}
 
 		return encoded;
 	}
 
 	public static String unmarshallString(byte[] data) {
-
-		String decoded;
-
 		// TODO: unmarshall String contained in data into decoded
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		String decoded;
+		
+		byte[] bytesToString = new byte[data.length-1];
+		for (int i = 1; i < data.length; i++) {
+			bytesToString[i-1] = data[i];
 		}
+		
+		decoded = new String(bytesToString);
+		System.out.println(decoded.length());
+		
+
+//		if (true) {
+//			throw new RuntimeException("not yet implemented");
+//		}
 
 		return decoded;
 	}
 
 	public static byte[] marshallVoid(byte rpcid) {
 
-		byte[] encoded;
+		byte[] encoded = new byte[1];
 
 		// TODO: marshall RPC identifier in case of void type
+		encoded[0] = rpcid;
 
-		if (true) {
-			throw new RuntimeException("not yet implemented");
-		}
+//		if (true) {
+//			throw new RuntimeException("not yet implemented");
+//		}
 
 		return encoded;
 
@@ -47,6 +63,7 @@ public class RPCUtils {
 	public static void unmarshallVoid(byte[] data) {
 
 		// TODO: unmarshall void type
+		
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -72,26 +89,35 @@ public class RPCUtils {
 
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
-		byte[] encoded;
+		byte[] encoded = new byte[128];
 
 		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		encoded[0] = rpcid;
+		byte[] intToByte = ByteBuffer.allocate(4).putInt(x).array();
+		for (int i = 0; i < intToByte.length; i++) {
+			encoded[i+1] = intToByte[i];
 		}
+
+//		if (true) {
+//			throw new RuntimeException("not yet implemented");
+//		}
 
 		return encoded;
 	}
 
 	public static int unmarshallInteger(byte[] data) {
-
-		int decoded;
-
 		// TODO: unmarshall integer contained in data
 
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		int decoded;
+		byte[] byteToInt = new byte[data.length];
+		for (int i = 1; i < data.length; i++) {
+			byteToInt[i-1] = data[i];
 		}
+		decoded = ByteBuffer.wrap(byteToInt).getInt();
+		
+//		if (true) {
+//			throw new RuntimeException("not yet implemented");
+//		}
 
 		return decoded;
 

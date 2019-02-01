@@ -19,16 +19,18 @@ public class RPCClient {
 	public void connect() {
 		
 		// TODO: connect using the underlying messaging layer connection
+		connection = msgclient.connect();
 		
-	    throw new RuntimeException("not yet implemented");
+//	    throw new RuntimeException("not yet implemented");
 			
 	}
 	
 	public void disconnect() {
 		
 		// TODO: disconnect/close the underlying messaging connection
+		connection.close();
 		
-		throw new RuntimeException("not yet implemented");
+//		throw new RuntimeException("not yet implemented");
 		
 	}
 	
@@ -46,9 +48,15 @@ public class RPCClient {
 		
 		*/
 		
-		if (true) {
-		  throw new RuntimeException("not yet implemented");
-		}
+		Message request = new Message(rpcrequest);
+		connection.send(request);
+		
+		Message reply = connection.receive();
+		rpcreply = reply.getData();
+		
+//		if (true) {
+//		  throw new RuntimeException("not yet implemented");
+//		}
 		
 		return rpcreply;
 		
