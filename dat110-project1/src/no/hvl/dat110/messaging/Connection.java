@@ -36,6 +36,7 @@ public class Connection {
 			outStream.write(message.encapsulate());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("EYO");
 			e.printStackTrace();
 		}
 
@@ -44,7 +45,6 @@ public class Connection {
 	}
 
 	public Message receive() {
-
 		Message message = new Message();
 		byte[] recvbuf = new byte[128];
 

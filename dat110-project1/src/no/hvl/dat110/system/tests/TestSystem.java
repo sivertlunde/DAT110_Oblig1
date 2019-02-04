@@ -30,6 +30,7 @@ class TestSystem {
 		try {
 			
 			displaythread.join();
+			System.out.println("EYO");
 			sensorthread.join();
 			controllerthread.join();
 
