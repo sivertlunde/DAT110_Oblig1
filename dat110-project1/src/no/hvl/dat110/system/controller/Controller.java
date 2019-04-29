@@ -38,21 +38,12 @@ public class Controller {
 		
 		
 		
-		boolean stop = false;
-		while (!stop) {
-			
-			String i = Integer.toString(sensor.read());
-			display.write(i);
-			
-			
-			if(i.equals("5")) {
-				stop = true;
-			}
-
+		for(int i = 0; i < N; i++){
+			String temp = Integer.toString(sensor.read());
+			display.write(temp);
 		}
-		// TODO:
-		// loop while reading from sensor and write to display via RPC
-
+		
+		
 		stopdisplay.stop();
 		stopsensor.stop();
 
