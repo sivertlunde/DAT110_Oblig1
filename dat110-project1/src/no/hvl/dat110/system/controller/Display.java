@@ -8,11 +8,11 @@ public class Display extends RPCStub {
 
 	public void write(String message) {
 
-		// TODO
-		// implement marshalling, call and unmarshalling for write RPC method
-
+		
 		byte[] mString = RPCUtils.marshallString(RPCID, message);
-		byt[] call = rmiclient.call(mString);
-		RPCUtils.unmarshall(call);
+	
+		
+		byte[] call = rmiclient.call(mString);
+		RPCUtils.unmarshallString(call);
 	}
 }

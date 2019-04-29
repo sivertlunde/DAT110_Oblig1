@@ -40,7 +40,7 @@ public class RPCClient {
 		
 		
 		Message request = new Message(rpcrequest);
-		System.out.println(request.toString());
+		
 
 		connection.send(request);
 		
